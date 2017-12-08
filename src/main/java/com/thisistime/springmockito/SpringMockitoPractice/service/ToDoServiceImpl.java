@@ -1,13 +1,14 @@
-package com.thisistime.springmockito.SpringMockitoPractice;
+package com.thisistime.springmockito.SpringMockitoPractice.service;
 
+import com.thisistime.springmockito.SpringMockitoPractice.model.ToDo;
+import com.thisistime.springmockito.SpringMockitoPractice.repository.ToDoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
 
 @Service("toDoService")
-public class ToDoServiceImpl  implements ToDoServices{
+public class ToDoServiceImpl  implements ToDoServices {
 
     @Autowired
     private ToDoRepository toDoRepository;

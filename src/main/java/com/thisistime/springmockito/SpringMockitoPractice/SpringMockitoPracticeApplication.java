@@ -1,6 +1,8 @@
 package com.thisistime.springmockito.SpringMockitoPractice;
 
-		import org.slf4j.Logger;
+		import com.thisistime.springmockito.SpringMockitoPractice.model.ToDo;
+        import com.thisistime.springmockito.SpringMockitoPractice.repository.ToDoRepository;
+        import org.slf4j.Logger;
 		import org.slf4j.LoggerFactory;
 		import org.springframework.boot.CommandLineRunner;
 		import org.springframework.boot.SpringApplication;

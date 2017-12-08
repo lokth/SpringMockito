@@ -1,4 +1,6 @@
-package com.thisistime.springmockito.SpringMockitoPractice;
+package com.thisistime.springmockito.SpringMockitoPractice.service;
+
+import com.thisistime.springmockito.SpringMockitoPractice.model.ToDo;
 
 import java.util.List;
 

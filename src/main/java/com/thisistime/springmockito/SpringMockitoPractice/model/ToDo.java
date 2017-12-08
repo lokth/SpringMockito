@@ -1,4 +1,4 @@
-package com.thisistime.springmockito.SpringMockitoPractice;
+package com.thisistime.springmockito.SpringMockitoPractice.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
