@@ -26,6 +26,12 @@ public class ToDo {
         this.completed = completed;
     }
 
+    public ToDo(int i, String s, boolean b) {
+        this.id= i;
+        this.text = s;
+        this.completed = b;
+    }
+
     public long getId() {
         return id;
     }

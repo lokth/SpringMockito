@@ -6,6 +6,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
@@ -34,6 +35,7 @@ public class ToDoControllerTest {
 
     private MockMvc mockMvc;
 
+    @Autowired
     private WebApplicationContext wac;
 
     @Before
@@ -68,6 +70,14 @@ public class ToDoControllerTest {
                 .andDo(print());
     }
 
+    @Test
+    public void verifyNullToDo() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/todo/6").accept(MediaType.APPLICATION_JSON))
+                    .andExpect(jsonPath("$.errorCode").value(404))
+                    .andExpect(jsonPath("$.message").value("ToDo doesn't exist"))
+                    .andDo(print());
+    }
+
 
     @Test
     public void verifyInvalidToDoId() throws Exception {
@@ -85,11 +95,27 @@ public class ToDoControllerTest {
                 .andDo(print());
     }
 
+    @Test
     public void verifyInvalidToDoIdToDelete()throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.delete("/todo/9").accept(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.status").value(404))
                 .andExpect(jsonPath("$.message").value("ToDo to delete doesn't exist"))
                 .andDo(print());
+    }
+
+    @Test
+    public void verifySaveToDo() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/todo/")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"text\" : \"New ToDo Sample\", \"completed\" : \"false\"}")
+                .accept(MediaType.APPLICATION_JSON))
+                    .andExpect(jsonPath("$.id").exists())
+                    .andExpect(jsonPath("$.text").exists())
+                    .andExpect(jsonPath("$.completed").exists())
+                    .andExpect(jsonPath("$.id").value(3))
+                    .andExpect(jsonPath("$.text").value("New ToDo Sample"))
+                    .andExpect(jsonPath("$.completed").value(false))
+                    .andDo(print());
     }
 
 
